@@ -1,0 +1,4 @@
+/node_modules
+/archive
+.env
+/public/256-book/assets/faces

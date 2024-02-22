@@ -1,0 +1,142 @@
+html {
+    font-family: input-mono, monospace !important;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    background-color: black;
+    color: white !important;
+}
+
+#promptForm {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    height: 95vh;
+    justify-content: center;
+    margin: auto;
+    gap: 10px;
+}
+
+#promptInput {
+    height: 20%;
+    font-family: input-mono, monospace !important;
+    padding: 12px 20px;
+}
+
+
+#promptSubmit {
+    align-self: center;
+    width: 20%;
+    padding: 10px;
+    font-family: input-mono, monospace !important;
+    font-weight: 400;
+    font-style: normal;
+
+    cursor: pointer;
+}
+
+
+
+.gallery {
+    z-index: 999;
+    height: fit-content;
+    width: 100vw;
+    display: flex;
+    gap: 1vw;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.gallery img {
+    max-width: 30vw;
+}
+
+.modal {
+
+    top: 0;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.9);
+    height: 100vh;
+}
+
+.modal-content {
+    display: block;
+    width: 40%;
+    max-width: 600px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+    display: block;
+    width: 80%;
+    /* max-width: 700px; */
+    text-align: center;
+    color: white;
+    padding: 10px 0;
+    height: fit-content;
+    font-size: 2vh;
+}
+
+/* The Close Button */
+.closeDiv {
+    text-align: right;
+    width: 40%;
+    max-width: 600px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close {
+    position: relative;
+    left: 25px;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 95vw;
+    margin: auto;
+    margin-top: 2vh;
+}
+
+.header span:nth-child(2) a:hover {
+    color: rgb(0, 194, 10);
+    cursor: help
+}
+
+.header span:nth-child(1) a:hover {
+    color: rgb(0, 194, 10);
+    cursor: pointer
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px) {
+    .modal-content {
+        width: 100%;
+    }
+}
