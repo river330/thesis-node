@@ -1,0 +1,91 @@
+body {
+    background-color: black;
+    color: white;
+
+}
+
+html {
+    font-family: input-mono, monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 95vw;
+    position: sticky;
+    margin-left: auto;
+    margin-right: auto;
+    top: 10px;
+    left: 0;
+    right: 0;
+    margin-top: 2vh;
+    align-self: center;
+    color: white;
+
+}
+
+.header span:nth-child(2):hover {
+    color: rgb(0, 194, 10);
+    cursor: pointer;
+}
+
+.header span:nth-child(3) a:hover {
+    color: rgb(0, 194, 10);
+    cursor: help
+}
+
+.header span:nth-child(1) a:hover {
+    color: rgb(0, 194, 10);
+    cursor: pointer
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+
+
+#promptForm {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    bottom: 40px;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    gap: 10px;
+}
+
+#promptInput {
+    min-height: 20%;
+    max-height: fit-content;
+    font-family: input-mono, monospace !important;
+    padding: 12px 20px;
+}
+
+
+#promptSubmit {
+    align-self: center;
+    width: fit-content;
+    height: auto;
+    padding: 10px;
+    font-family: input-mono, monospace !important;
+    font-weight: 400;
+    font-style: normal;
+
+    cursor: pointer;
+}
+
+.conversationContainer {
+    width: 95vw;
+    margin: auto;
+    height: 75vh;
+    overflow-y: scroll;
+}

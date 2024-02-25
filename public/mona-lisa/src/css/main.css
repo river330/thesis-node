@@ -29,7 +29,8 @@ body {
 
 #promptSubmit {
     align-self: center;
-    width: 20%;
+    width: fit-content;
+    height: auto;
     padding: 10px;
     font-family: input-mono, monospace !important;
     font-weight: 400;

@@ -6,15 +6,25 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="src/css/main.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
     <title>GPT</title>
 </head>
 
 <body>
-    <scipt></scipt>
-    <button type="button" onclick="printJS('docs/printjs.pdf')">
-        Print PDF
-    </button>
-
+    <div class="header">
+        <span><a href="/">RETURN</a></span>
+        <span id="saveToImage" onclick="generatePDF()">PRINT CONVERSATION</span>
+        <span><a href="explain.html">ABOUT</a></span>
+    </div>
+    <div class="conversationContainer"></div>
+    <form id="promptForm">
+        <textarea id="promptInput" placeholder="How can I help you?" onfocus="placeholder=''"></textarea>
+        <button id="promptSubmit" type="submit">GENERATE IMAGE</button>
+    </form>
+    <script src="src/js/script.js"></script>
+    <script type="module" src="src/js/OCR-B-normal.js"></script>
+    <script type="module" src="src/js/print.js">
+    </script>
 </body>
 
 </html>

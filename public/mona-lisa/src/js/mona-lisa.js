@@ -54,7 +54,7 @@ document.getElementById('promptForm').addEventListener('submit', function (event
 
 
 
-    fetch('/api/openai', {
+    fetch('/api/openai/images', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
