@@ -29,7 +29,7 @@ export function generatePDF() {
     const doc = new jsPDF({
         orientation: 'p',
         unit: 'mm',
-        format: [80, 609.6],
+        format: [75, 609.6],
         lineHeight: 1.2,
     });
 
@@ -42,7 +42,7 @@ export function generatePDF() {
         theme: 'plain',
         styles: { font: 'OCR-B', fontStyle: 'normal', halign: 'center' },
         margin: { left: 4.7625, right: 4.7625, top: 4.7625, bottom: 1 },
-        bodyStyles: { fontSize: 5, cellPadding: 0 },
+        bodyStyles: { fontSize: 6, cellPadding: 0 },
         body: [[convoTitle.toUpperCase()]],
     });
     doc.autoTable({
@@ -50,14 +50,14 @@ export function generatePDF() {
         styles: { font: 'OCR-B', fontStyle: 'normal' },
         columnStyles: { 1: { halign: 'center' }, 2: { halign: 'right' } },
         margin: { left: 4.8625, right: 4.8625, top: 1, bottom: 1 },
-        bodyStyles: { fontSize: 3, cellPadding: 0 },
+        bodyStyles: { fontSize: 4, cellPadding: 0 },
         body: [["HUMAN: " + userName, "DATE: " + theDate, "TIME: " + theTime]],
     });
     doc.autoTable({
         theme: 'plain',
         styles: { font: 'OCR-B', fontStyle: 'normal' },
         margin: { left: 4.5625, right: 4.5625, top: 1, bottom: 1 },
-        bodyStyles: { fontSize: 3, cellPadding: 0.5 },
+        bodyStyles: { fontSize: 5.5, cellPadding: 0.5 },
         body: convoContent,
     });
     return doc.save(`test.pdf`);
