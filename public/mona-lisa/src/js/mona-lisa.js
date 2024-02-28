@@ -133,3 +133,12 @@ span.onclick = function () {
 
     document.body.style.overflow = "visible";
 }
+
+$(document).ready(function() {
+    $('#promptInput').keypress(function(event) {
+        if (event.which == 13) { // 13 is the Enter key
+            event.preventDefault(); // Prevent the default action to stop submitting the form
+            $('#promptSubmit').click(); // Trigger the click event on your submit button
+        }
+    });
+});

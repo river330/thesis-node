@@ -84,8 +84,20 @@ a {
 }
 
 .conversationContainer {
-    width: 95vw;
+    width: 65vw;
     margin: auto;
     height: 75vh;
     overflow-y: scroll;
+}
+
+p {
+    line-height: 1.5em;
+}
+
+.red {
+    color: magenta
+}
+
+.green {
+    color: greenyellow;
 }
