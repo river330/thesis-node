@@ -1,9 +1,10 @@
 const { jsPDF } = window.jspdf;
-import { convoContent } from "./script.js";
-
-let convoTitle = "This is my title";
+import { convoContent, playerInfo } from "./script.js";
 
 export function generatePDF() {
+
+    let convoTitle = playerInfo.title;
+
     let today = new Date();
     let h = today.getHours();
     let m = today.getMinutes();
@@ -33,7 +34,7 @@ export function generatePDF() {
         lineHeight: 1.2,
     });
 
-    let userName = "Rand";
+    let userName = playerInfo.name;
     let theDate = mth + "/" + day + "/" + yr;
     let theTime = h + ":" + m + ":" + s;
 

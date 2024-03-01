@@ -1,4 +1,8 @@
 export let convoContent = [];
+export let playerInfo = {
+    name: '',
+    title: '',
+}
 
 let chatHistory = [{role: "system", content: "You are a helpful assistant."}];
 
@@ -102,3 +106,18 @@ $(document).ready(function() {
         }
     });
 });
+
+
+document.querySelector("#saveToImage").addEventListener("click", function(){
+    let infoModal = document.querySelector(".infoModal");
+    infoModal.style.display = "flex";
+});
+
+document.querySelector("#infoSave").addEventListener("click", function(){
+    playerInfo.name = document.querySelector("#name").value;
+    playerInfo.title = document.querySelector("#title").value;
+
+    generatePDF();
+})
+
+
