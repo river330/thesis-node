@@ -1,31 +1,45 @@
-export let convoContent = [];
+export let convoContent = []; //runing conversations being logged
 export let playerInfo = {
     name: '',
     title: '',
 }
 
+//an array of the running chatHistory being using as context for the GPT
 let chatHistory = [{role: "system", content: "You are a helpful assistant."}];
 
+//what happens on click "Print Conversation"
 document.getElementById('promptForm').addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent the form from submitting in the traditional way
-    const prompt = document.getElementById('promptInput').value;
+    const prompt = document.getElementById('promptInput').value; //gathers what is in the prompt section
 
-
+    //the conversation container
     let container = document.querySelector(".conversationContainer");
+
+    //creating a new text element
     let newText = document.createElement("p");
+
+    //composes the user prompt with 'HUMAN: ' in the beginning
     let fullText = "HUMAN: " + prompt;
 
-            
+    //composes the user prompt with 'HUMAN: ' in the beginning for the PDF
     let forPDF = ["HUMAN:", prompt]
-    convoContent.push(forPDF);
+    //push to PDF
+    convoContent.push(forPDF); 
+
+    //creates a new text node using the fullText as the information
     let newNode = document.createTextNode(fullText);
+
+    //adds the node element to the p element
     newText.appendChild(newNode);
+    //adds that p element to the conversation container
     container.appendChild(newText);
     console.log("added question");
 
-    changeRed();
-    scrollToBottom();
 
+    changeRed(); //edits color
+    scrollToBottom(); //makes sure we are always at the bottom of the conversation
+
+    //creates new history for chatHistory[]
     let forChatHistory = {role: "user", content: prompt};
     chatHistory.push(forChatHistory);
 
@@ -44,25 +58,39 @@ document.getElementById('promptForm').addEventListener('submit', function (event
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        let newText2 = document.createElement("p");
-        let fullText2 = "CHATGPT: " + data.choices[0].message.content;
 
-        let forPDF2 = ["CHATGPT:", data.choices[0].message.content]
+        //creating a new text element
+        let newText2 = document.createElement("p");
+
+        //composes the GPT output with 'ROBOT RAND: ' in the beginning
+        let fullText2 = "ROBOT RAND: " + data.choices[0].message.content;
+
+        //composes the user prompt with 'ROBOT RAND: ' in the beginning for the PDF
+        let forPDF2 = ["ROBOT RAND:", data.choices[0].message.content]
+        //pushes to the PDF
         convoContent.push(forPDF2);
+
+         //creates a new text node using the fullText2 as the information
         let newNode2 = document.createTextNode(fullText2);
+
+        //adds the node element to the p element
         newText2.appendChild(newNode2);
+        //adds that p element to the conversation container
         container.appendChild(newText2);
-        document.getElementById('promptInput').value = '',
         console.log("added response");
 
-        let forChatHistory2 = {role: "assistant", content: data.choices[0].message.content};
+        document.getElementById('promptInput').value = ''; //resets prompt input
 
+
+        //creates new history for chatHistory[]
+        let forChatHistory2 = {role: "assistant", content: data.choices[0].message.content};
         chatHistory.push(forChatHistory2);
 
+        //checks history thus far
         console.log(chatHistory)
 
-        changeGreen();
-        scrollToBottom();
+        changeGreen(); //edits color
+        scrollToBottom(); //makes sure we are always at the bottom of the conversation
 
     })
     .catch(error => console.error('Error:', error))
@@ -78,7 +106,7 @@ function changeRed() {
 }
 
 function changeGreen() {
-    var targetWord ="CHATGPT:";
+    var targetWord ="ROBOT RAND:";
     $(".conversationContainer p").each(function() {
         var regex = new RegExp('('+ targetWord +')', 'gi');
         $(this).html($(this).html().replace(regex, '<span class="green">$1</span>'));

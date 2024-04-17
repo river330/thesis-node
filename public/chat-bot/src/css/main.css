@@ -5,16 +5,16 @@ body {
 }
 
 html {
-    font-family: input-mono, monospace;
-    font-weight: 400;
+    font-family: "input-mono", monospace;
+    font-weight: 200;
     font-style: normal;
 }
 
 .header {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 95vw;
+    justify-content: center;
+    width: 100vw;
     position: sticky;
     margin-left: auto;
     margin-right: auto;
@@ -27,19 +27,9 @@ html {
 
 }
 
-.header span:nth-child(2):hover {
+.header span:hover {
     color: rgb(0, 194, 10);
     cursor: pointer;
-}
-
-.header span:nth-child(3) a:hover {
-    color: rgb(0, 194, 10);
-    cursor: help
-}
-
-.header span:nth-child(1) a:hover {
-    color: rgb(0, 194, 10);
-    cursor: pointer
 }
 
 a {
