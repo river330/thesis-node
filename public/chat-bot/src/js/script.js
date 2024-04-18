@@ -3,6 +3,7 @@ export let playerInfo = {
     name: '',
     title: '',
 }
+export let number = 0;
 
 //an array of the running chatHistory being using as context for the GPT
 let chatHistory = [{role: "system", content: "You are a helpful assistant."}];
@@ -38,6 +39,21 @@ document.getElementById('promptForm').addEventListener('submit', function (event
 
     changeRed(); //edits color
     scrollToBottom(); //makes sure we are always at the bottom of the conversation
+
+    //creating a new text element
+    let tempText = document.createElement("p");
+
+    //composes the GPT output with 'ROBOT RAND: ' in the beginning
+    let tempfullText = "ROBOT RAND: ..."
+    let tempNode = document.createTextNode(tempfullText);
+
+        //adds the node element to the p element
+        tempText.appendChild(tempNode);
+        //adds that p element to the conversation container
+        container.appendChild(tempText);
+
+        changeGreen(); //edits color
+        scrollToBottom(); //makes sure we are always at the bottom of the conversation
 
     //creates new history for chatHistory[]
     let forChatHistory = {role: "user", content: prompt};
@@ -76,6 +92,7 @@ document.getElementById('promptForm').addEventListener('submit', function (event
         //adds the node element to the p element
         newText2.appendChild(newNode2);
         //adds that p element to the conversation container
+        container.removeChild(container.lastChild);
         container.appendChild(newText2);
         console.log("added response");
 
@@ -92,10 +109,13 @@ document.getElementById('promptForm').addEventListener('submit', function (event
         changeGreen(); //edits color
         scrollToBottom(); //makes sure we are always at the bottom of the conversation
 
+        number = number+1;
+
     })
     .catch(error => console.error('Error:', error))
 });
 
+//edit UI to be red for "Human:"
 function changeRed() {
     var targetWord = "HUMAN:"; // The word you're searching for
     $(".conversationContainer p").each(function() {
@@ -105,6 +125,7 @@ function changeRed() {
 
 }
 
+//edit UI to be green for "Robot RAND:"
 function changeGreen() {
     var targetWord ="ROBOT RAND:";
     $(".conversationContainer p").each(function() {
@@ -118,6 +139,7 @@ function changeGreen() {
 import { generatePDF } from "./print.js";
 window.generatePDF = generatePDF;
 
+//makes sure to scroll bottom of conversation container 
 function scrollToBottom() {
     var $container = $('.conversationContainer');
     var scrollHeight = $container.prop('scrollHeight');
@@ -126,6 +148,7 @@ function scrollToBottom() {
     }, 500); // Adjust the duration (500ms) as needed
 };
 
+//allowing enter button to submit prompt
 $(document).ready(function() {
     $('#promptInput').keypress(function(event) {
         if (event.which == 13) { // 13 is the Enter key
@@ -144,8 +167,30 @@ document.querySelector("#saveToImage").addEventListener("click", function(){
 document.querySelector("#infoSave").addEventListener("click", function(){
     playerInfo.name = document.querySelector("#name").value;
     playerInfo.title = document.querySelector("#title").value;
-
     generatePDF();
+    let infoModal = document.querySelector(".infoModal");
+    infoModal.style.display = "none";
+    convoContent = [];
+    console.log(convoContent);
+
+    let parentElement = document.querySelector(".conversationContainer");
+
+    while (parentElement.firstChild) {
+        parentElement.removeChild(parentElement.firstChild);
+    }
 })
+
+// document.querySelector('#exitButton').addEventListener("click", function(){
+//     let infoModal = document.querySelector(".infoModal");
+//     infoModal.style.display = "none";
+//     convoContent = [];
+//     console.log(convoContent);
+
+//     let parentElement = document.querySelector(".conversationContainer");
+
+//     while (parentElement.firstChild) {
+//         parentElement.removeChild(parentElement.firstChild);
+//     }
+// })
 
 
