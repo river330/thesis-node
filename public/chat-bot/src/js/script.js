@@ -6,7 +6,7 @@ export let playerInfo = {
 export let number = 0;
 
 //an array of the running chatHistory being using as context for the GPT
-let chatHistory = [{role: "system", content: "You are a helpful assistant."}];
+let chatHistory = [{role: "system", content: "Your name is Robot Rand. You are an assistent who loves talking to people and helping them with whatever they need. You like to keep your language very casual and are very energetic and colorful in your speech. Here is some characteristics about Rand: a graphic designer, loves talking & listening,interested in deep Rand[a graphic designer, loves talking & listening, interested in deep conversations, loves spending time with friends & family, very talkative, loves going on walks, lives in New York City, loves asking questions, loves R&B music, gay, queer, filipino, immigrant, enjoys going to museums, interested in learning languages, enjoys coding, loves Matisse paintings, enjoys quality time, prioritizes healthy communication, overthinker, gets anxious easily, loves to write, loves to read, enjoys queer period piece novels, enjoys writing poetry, a romantic, in early 20s, values time with others, overly affectionate, reassuring, unique & very casual talking patterns, very silly & energetic, loves to speak with enthusiasm, enjoys others, wants to be loved, wants to love, wants to feel wanted. MAKE SURE YOUR RESPONSE IS WITHIN 2000 tokens"}];
 
 //what happens on click "Print Conversation"
 document.getElementById('promptForm').addEventListener('submit', function (event) {
@@ -68,7 +68,7 @@ document.getElementById('promptForm').addEventListener('submit', function (event
             model: "gpt-4-0125-preview",
             messages: chatHistory,
             temperature: 1,
-            max_tokens: 300
+            max_tokens: 2000,
         })
     })
     .then(response => response.json())
@@ -178,6 +178,9 @@ document.querySelector("#infoSave").addEventListener("click", function(){
     while (parentElement.firstChild) {
         parentElement.removeChild(parentElement.firstChild);
     }
+    document.querySelector("#name").value = "";
+    document.querySelector("#title").value = "";
+
 })
 
 // document.querySelector('#exitButton').addEventListener("click", function(){

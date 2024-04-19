@@ -52,17 +52,17 @@ export function generatePDF() {
 
     doc.autoTable({
         theme: 'plain',
-        styles: { font: 'InputMono-Light', fontStyle: 'normal', halign: 'center' },
+        styles: { font: 'InputMono-Light', fontStyle: 'normal' },
         columnStyles: { 0: { halign: 'left', cellWidth: 'auto' }, 1: { halign: 'right', cellWidth: 'auto'  } },
         margin: { left: 4.8625, right: 4.8625, top: 1, bottom: 0},
-        bodyStyles: { fontSize: 8, cellPadding: 0 },
-        body: [["INDEX REF.","Reciept No."+"00"+number]]
+        bodyStyles: { fontSize: 7, cellPadding: 0 },
+        body: [["INDEX REF.",`Reciept No.00${number}`]]
     })
     doc.autoTable({
         theme: 'plain',
         styles: { font: 'InputMono-Light', fontStyle: 'normal' },
         columnStyles: { 1: { halign: 'center' }, 2: { halign: 'right' } },
-        margin: { left: 4.8625, right: 4.8625, top: 1, bottom: 1 },
+        margin: { left: 4.8625, right: 4.8625, top: 0, bottom: 1 },
         bodyStyles: { fontSize: 6, cellPadding: 0 },
         body: [["HUMAN: " + userName, "DATE: " + theDate, "TIME: " + theTime]],
     });
@@ -97,12 +97,13 @@ export function generatePDF() {
     doc.autoTable({
         theme: 'plain',
         styles: { font: 'InputMono-Light', fontStyle: 'normal', halign: 'center' },
-        margin: { left: 4.7625, right: 4.7625, top: 4.7625, bottom: 2 },
+        margin: { left: 4.7625, right: 4.7625, top: 2.7625, bottom: 2 },
         bodyStyles: { fontSize: 8, cellPadding: 0 },
         body: [["Conversation Closed"]],
     });
     doc.addPage([71.88, 609.6], 'p');
-    doc.addImage(img, 'JPEG', 1, 1, 71.88, 241.3);
+    doc.addImage(img, 'PNG', 1, 1, 71.88, 241.3);
+    doc.autoPrint({variant: 'non-conform'});
     // doc.addPage([71.88, 609.6], 'p');
-    return doc.save(`test.pdf`);
+    return doc.save(`test-00${number}.pdf`);
 }
